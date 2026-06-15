@@ -1,4 +1,18 @@
 {
   "/_not-found/page": "/_not-found",
-  "/page": "/"
+  "/cart/page": "/cart",
+  "/checkout/page": "/checkout",
+  "/login/page": "/login",
+  "/page": "/",
+  "/products/page": "/products",
+  "/profile/page": "/profile",
+  "/register/page": "/register",
+  "/admin/categories/page": "/admin/categories",
+  "/admin/customers/page": "/admin/customers",
+  "/admin/dashboard/page": "/admin/dashboard",
+  "/admin/login/page": "/admin/login",
+  "/admin/orders/page": "/admin/orders",
+  "/admin/promotions/page": "/admin/promotions",
+  "/admin/products/page": "/admin/products",
+  "/admin/reviews/page": "/admin/reviews"
 }

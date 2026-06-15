@@ -5,6 +5,29 @@ import pool from '../db';
 
 const router = Router();
 
+router.post('/register', async (req, res) => {
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    return res.status(400).json({ error: 'Semua field harus diisi' });
+  }
+
+  try {
+    const [existingUser] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+    if ((existingUser as any).length > 0) {
+      return res.status(400).json({ error: 'Email sudah terdaftar' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await pool.query('INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)', [name, email, hashedPassword, 'customer']);
+
+    res.status(201).json({ message: 'Registrasi berhasil' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Gagal mendaftar' });
+  }
+});
+
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
